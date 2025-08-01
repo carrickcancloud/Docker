@@ -1,5 +1,6 @@
 # This Dockerfile sets up an Apache web server on Ubuntu 24.04
-# It installs Apache, Python, Flask, and copies configuration files and HTML content.
+# It installs Apache, enables necessary modules, and configures the server
+# It also copies images and configuration files into the container
 
 # Using the official Ubuntu base image
 FROM ubuntu:24.04
