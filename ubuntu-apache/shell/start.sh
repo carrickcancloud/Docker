@@ -3,7 +3,7 @@
 # Get the container ID
 CONTAINER_ID=$(hostname)
 
-# Create the index.html file with injected information
+# Create the index.html file with the container ID
 cat <<EOF > /var/www/html/index.html
 <!DOCTYPE html>
 <html lang="en">
@@ -130,6 +130,7 @@ cat <<EOF > /var/www/html/index.html
 </html>
 EOF
 
+# Create the error.html file with the container ID
 cat <<EOF >> /var/www/html/error.html
 <!DOCTYPE html>
 <html lang="en">
