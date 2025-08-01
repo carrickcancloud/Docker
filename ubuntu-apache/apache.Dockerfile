@@ -9,7 +9,7 @@ LABEL author="CarrickCanCloud"
 LABEL maintainer="CarrickCanCloud"
 LABEL homepage="https://carrickcan.cloud"
 LABEL license="GPL-3.0"
-LABEL description="Apache web server with Flask."
+LABEL description="Apache web server on Ubuntu 24.04."
 LABEL version="1.0"
 LABEL build-date="2025-08-01"
 
