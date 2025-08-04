@@ -72,7 +72,7 @@ In order to use Docker Hub as repository for our container images, it'll be best
 
 ### 🗂️ Create Docker Repository
 
-You can create this on your first push or if you want to enable and configure more, you can create the repository first.
+You can create this on your first push or if you want to enable and configure more options, you can create the repository first.
 Free accounts have limitations on private repositories and using scout, so please review and have fun at your leisure.
 
 1. Login into Docker Hub: [DockerHub](https://app.docker.com/)
@@ -212,8 +212,6 @@ To build the Docker image, follow these steps:
    REPOSITORY             TAG                 IMAGE ID       CREATED          SIZE
    <your-docker-account-name>/<your-docker-repository-name>   ubuntu-apache-1.0   8c7e59017a80   14 minutes ago   313MB
    ```
-
-   - This command lists all Docker images on your system, and you should see the newly built image with the specified tag
 
 ### 🔐 Login to Docker Hub - CLI
 
