@@ -1,8 +1,10 @@
 # Ubuntu & Apache Container
 
-Welcome to my Docker repository!
+This project focuses on creating a Docker container using the official base image of Ubuntu 24.04 and Apache web server. It provides a simple setup for running a web server in a Docker container, making it easy to deploy and manage web applications.
 
-This repository focuses on containerization and deployment strategies tailored for DevOps engineering as I expand my knowledge and experience in this field.
+The focus is on creating & deleting docker images, use of a Dockerfile to build the images, pushing & pulling the image to & from Docker Hub, creating networks, and launching containers on the default and custom network.
+
+Most of my work is done through the command line interface (CLI) using terminal commands. I use Visual Studio Code (VSCode) for editing files and managing the project.
 
 Docker Services:
 
