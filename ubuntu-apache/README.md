@@ -27,7 +27,7 @@ Languages:
     - [🗂️ Create Docker Repository](#️-create-docker-repository)
     - [🖥️ Install Docker Desktop](#️-install-docker-desktop)
   - [🗃️ Git Repository](#️-git-repository)
-    - [📋 Clone or Download](#-clone-or-download)
+    - [📦 Download](#-download)
     - [📁 Repository Structure](#-repository-structure)
   - [✨ Docker Magic](#-docker-magic)
     - [📝 Placeholders](#-placeholders)
@@ -47,7 +47,7 @@ Languages:
 
 1. Docker Account
 2. Docker Desktop
-3. Git (Optional)
+3. Git (Optional if you prefer to clone or fork the repository.)
 
 ## 🐳 Docker Account
 
@@ -98,25 +98,21 @@ Free accounts have limitations on private repositories and using scout, so pleas
 
    Output:
 
-   ```angular2html
+   ```bash
    ❯ docker --version
    Docker version 28.3.2, build 578ccf6
    ```
 
 ## 🗃️ Git Repository
 
-### 📋 Clone or Download
+### 📦 Download
 
-If you prefer to use git clone you can do so or you can download the zip package of the repository.
-
-1. Git Clone URL: <https://github.com/<your-docker-account-name>/Docker.git>
-2. Git Clone SSH: <git@github.com>:<your-docker-account-name>/Docker.git
-3. Zip File: <https://github.com/<your-docker-account-name>/Docker/archive/refs/heads/main.zip>
+1. Zip File: [**Download `ubuntu-apache` Project (Zip)**](https://downgit.github.io/#/home?url=https://github.com/carrickcancloud/Docker/tree/main/ubuntu-apache)
    1. Extract the zip file to a directory of your choice
 
 ### 📁 Repository Structure
 
-   ```angular2html
+   ```plaintext
    ubuntu-apache
    ├── apache
    │   ├── conf
@@ -199,7 +195,7 @@ To build the Docker image, follow these steps:
       - `⁠-f`: This option specifies the Dockerfile to use for building the image
       - `⁠apache.Dockerfile`: The name of the Dockerfile in the current directory
    4. `⁠.`
-      - The dot at the end specifies the build context, which is the current directory. Docker will look for the Dockerfile and any files it needs in this directory 
+      - The dot at the end specifies the build context, which is the current directory. Docker will look for the Dockerfile and any files it needs in this directory.
    5. The build process will read the Dockerfile, execute the instructions, and create a new Docker image with the specified tag
    6. Once the build is complete, you can verify the image by running:
 
