@@ -1,0 +1,63 @@
+# Docker Compose configuration for apache and samba web stack
+name: luit-webstack
+
+# Define networks and volumes
+networks:
+  www-net:
+    driver: bridge
+  file-net:
+    driver: bridge
+
+# Define persistent volumes
+volumes:
+  wwwdata:
+  sambastate:
+  sambacache:
+  sambalog:
+
+# Define services
+services:
+# Samba service for file sharing
+  samba:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: samba
+    image: local/samba:enc
+    container_name: samba
+    environment:
+      - SMB_USERNAME=wwwuser
+      - SMB_PASSWORD=${SMB_PASSWORD:?set in .env or environment}
+    # Samba is only on the file network
+    networks:
+      - file-net
+    # Expose 445 for hosts (external servers) to mount
+    ports:
+      - "445:445"
+    volumes:
+      - wwwdata:/srv/www/html        # persistent samba share data
+      - sambastate:/var/lib/samba    # samba state db
+      - sambacache:/var/cache/samba  # samba cache
+      - sambalog:/var/log/samba      # samba logs
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+
+# Apache web server service
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: web
+    image: local/web:apache
+    container_name: web
+    depends_on:
+      - samba
+    networks:
+      - www-net
+      - file-net
+    ports:
+      - "8080:80"
+    volumes:
+      - wwwdata:/var/www/html     # same content volume
+    restart: unless-stopped
