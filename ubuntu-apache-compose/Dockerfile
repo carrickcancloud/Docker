@@ -1,6 +1,7 @@
 # ------------------
 # --- Base stage ---
 # ------------------
+
 # Using the official Ubuntu image
 FROM ubuntu:24.04 AS base
 
@@ -24,6 +25,7 @@ RUN apt-get update && \
 # ---------------------
 # --- Content stage ---
 # ---------------------
+    
 # Prepare content to seed into other images
 FROM scratch AS content
 COPY ./apache/images/ /seed/images/
