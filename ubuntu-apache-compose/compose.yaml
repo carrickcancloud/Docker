@@ -1,5 +1,5 @@
 # Docker Compose configuration for apache and samba web stack
-name: luit-webstack
+name: webstack
 
 # Define networks and volumes
 networks:
@@ -11,6 +11,7 @@ networks:
 # Define persistent volumes
 volumes:
   wwwdata:
+  wwwlog:
   sambastate:
   sambacache:
   sambalog:
@@ -53,11 +54,14 @@ services:
     container_name: web
     depends_on:
       - samba
+    # Apache is on both networks
     networks:
       - www-net
       - file-net
+    # Expose port 80 to host on port 8080
     ports:
       - "8080:80"
     volumes:
-      - wwwdata:/var/www/html     # same content volume
+      - wwwdata:/var/www/html     # persistent samba share data
+      - wwwlog:/var/log/apache2   # persistent apache logs
     restart: unless-stopped
