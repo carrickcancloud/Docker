@@ -129,8 +129,7 @@ Create a file named `.env` in the root of the project and add the following line
 With Docker Compose, you can build both the `web` and `samba` images defined in the `Dockerfile` with a single command.
 
 ```bash
-docker compose build
-docker compose up -d
+docker compose up --build -d
 ```
 
 ---
@@ -142,6 +141,16 @@ docker compose up -d
 Here are the essential commands for managing the application stack.
 
 ```bash
+
+# Build all images
+docker compose build
+
+# Build web image only
+docker compose build web
+
+# Build samba image only
+docker compose build samba
+
 # Check the status of all containers
 docker compose ps
 
