@@ -1,19 +1,20 @@
 # Docker Compose configuration for apache and samba web stack
-name: luit-webstack
+name: webstack
 
 # Define networks and volumes
 networks:
-  www-net:
+  www-net:      # apache web network
     driver: bridge
-  file-net:
+  file-net:     # samba file network
     driver: bridge
 
 # Define persistent volumes
 volumes:
-  wwwdata:
-  sambastate:
-  sambacache:
-  sambalog:
+  wwwdata:      # apache webroot file share on samba
+  wwwlog:       # apache logs
+  sambastate:   # samba state database
+  sambacache:   # samba cache
+  sambalog:     # samba logs
 
 # Define services
 services:
@@ -28,17 +29,15 @@ services:
     environment:
       - SMB_USERNAME=wwwuser
       - SMB_PASSWORD=${SMB_PASSWORD:?set in .env or environment}
-    # Samba is only on the file network
     networks:
-      - file-net
-    # Expose 445 for hosts (external servers) to mount
+      - file-net    # samba is only on file network
     ports:
-      - "445:445"
+      - "445:445"   # Expose 445 for hosts (external servers) to mount
     volumes:
-      - wwwdata:/srv/www/html        # persistent samba share data
-      - sambastate:/var/lib/samba    # samba state db
-      - sambacache:/var/cache/samba  # samba cache
-      - sambalog:/var/log/samba      # samba logs
+      - wwwdata:/srv/www/html           # apache webroot file share on samba
+      - sambastate:/var/lib/samba       # samba state database
+      - sambacache:/var/cache/samba     # samba cache
+      - sambalog:/var/log/samba         # samba logs
     tmpfs:
       - /tmp
     restart: unless-stopped
@@ -52,12 +51,13 @@ services:
     image: local/web:apache
     container_name: web
     depends_on:
-      - samba
-    networks:
+      - samba   # web depends on samba being up
+    networks:   # apache is on both networks
       - www-net
       - file-net
     ports:
-      - "8080:80"
+      - "8080:80"   # Expose host port 8080 to container port 80
     volumes:
-      - wwwdata:/var/www/html     # same content volume
+      - wwwdata:/var/www/html     # apache webroot file share on samba
+      - wwwlog:/var/log/apache2   # apache logs
     restart: unless-stopped
