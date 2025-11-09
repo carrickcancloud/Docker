@@ -47,9 +47,6 @@ RUN apt-get update && \
 COPY ./apache/conf/apache.conf /etc/apache2/sites-available/000-default.conf
 COPY ./apache/conf/security.conf /etc/apache2/conf-available/security.conf
 
-# Seed the web content
-COPY --from=content /seed/images/ /var/www/html/images/
-
 # Entrypoint script
 COPY ./shell/apache_start.sh /usr/local/bin/apache_start.sh
 RUN chmod +x /usr/local/bin/apache_start.sh
